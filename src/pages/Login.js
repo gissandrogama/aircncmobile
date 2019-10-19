@@ -1,6 +1,8 @@
 import React from 'react'
 import { Image, Text, TextInput, TouchableOpacity, StyleSheet, View, KeyboardAvoidingView } from 'react-native'
 
+import api from '../services/api'
+
 import logo from '../assets/logo.png'
 
 // importar Platfrom e usar enabled={Platform.OS === "ios"} caso IOS na tag KeyboardAvoidingView
