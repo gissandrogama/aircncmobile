@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Image, Text, TextInput, TouchableOpacity, StyleSheet, View, KeyboardAvoidingView } from 'react-native'
+import { AsyncStorage, Image, Text, TextInput, TouchableOpacity, StyleSheet, View, KeyboardAvoidingView } from 'react-native'
 
 import api from '../services/api'
 
@@ -7,7 +7,7 @@ import logo from '../assets/logo.png'
 
 // importar Platfrom e usar enabled={Platform.OS === "ios"} caso IOS na tag KeyboardAvoidingView
 
-export default function Login() {
+export default function Login({ navigation }) {
     const [email, setEmail] = useState('')
     const [techs, setTechs] = useState('')
 
@@ -18,7 +18,10 @@ export default function Login() {
 
         const { _id } = response.data
 
-        console.log(_id)
+        await AsyncStorage.setItem('user', _id)
+        await AsyncStorage.setItem('techs', techs)
+
+        navigation.navigate('List')
 
     }
 
