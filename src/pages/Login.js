@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Image, Text, TextInput, TouchableOpacity, StyleSheet, View, KeyboardAvoidingView } from 'react-native'
 
 import api from '../services/api'
@@ -8,6 +8,14 @@ import logo from '../assets/logo.png'
 // importar Platfrom e usar enabled={Platform.OS === "ios"} caso IOS na tag KeyboardAvoidingView
 
 export default function Login() {
+    const [email, setEmail] = useState('')
+    const [techs, setTechs] = useState('')
+
+    async function handleSubmit(){
+        console.log(email)
+        console.log(techs)
+    }
+
     return (
         <KeyboardAvoidingView behavior="padding" style={styles.container}>
             <Image source={logo} />
@@ -21,6 +29,8 @@ export default function Login() {
                     keyboardType="email-address"
                     autoCapitalize="none"
                     autoCorrect={false}
+                    value={email}
+                    onChangeText={setEmail}
                 />
 
                 <Text style={styles.label}>Tecnologias *</Text>
@@ -30,9 +40,11 @@ export default function Login() {
                     placeholderTextColor="#999" 
                     autoCapitalize="words"
                     autoCorrect={false}
+                    value={techs}
+                    onChangeText={setTechs}
                 />
 
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity onPress={handleSubmit} style={styles.button}>
                     <Text style={styles.buttonText}>Encontrar spots</Text>
                 </TouchableOpacity>
             </View>
